@@ -77,12 +77,12 @@ public class SongReader {
                                         || !("No".equals(likes) || likeYes);
                 if (!(skipPerson || skipSong))
                 {
-                    currSong.add(Type.HOBBY, hobbyIdx, heardYes, 0);
-                    currSong.add(Type.HOBBY, hobbyIdx, likeYes, 2);
-                    currSong.add(Type.MAJOR, majorIdx, heardYes, 0);
-                    currSong.add(Type.MAJOR, majorIdx, likeYes, 2);
-                    currSong.add(Type.REGION, regionIdx, heardYes, 0);
-                    currSong.add(Type.REGION, regionIdx, likeYes, 2);
+                    currSong.add(TypeEnum.HOBBY, hobbyIdx, heardYes, 0);
+                    currSong.add(TypeEnum.HOBBY, hobbyIdx, likeYes, 2);
+                    currSong.add(TypeEnum.MAJOR, majorIdx, heardYes, 0);
+                    currSong.add(TypeEnum.MAJOR, majorIdx, likeYes, 2);
+                    currSong.add(TypeEnum.REGION, regionIdx, heardYes, 0);
+                    currSong.add(TypeEnum.REGION, regionIdx, likeYes, 2);
                 }
             }
             lineScanner.close();
