@@ -43,44 +43,41 @@ public class Sorter {
 
 
     public void inssortTitle() {
-        for (int i=1; i<library.size(); i++) { // Insert i'th record
-          for (int j=i; (j>0) && library.get(j).getTitle().compareToIgnoreCase(library.get(j-1).getTitle()) < 0; j--) {
-            library.swap(j, j-1);
-          }
+        for (int i = 0; i < library.size(); i++) { // Insert i'th record
+            for (int j = i; (j >= 0) && library.get(j).getTitle()
+                .compareToIgnoreCase(library.get(j - 1).getTitle()) < 0; j--) {
+                library.swap(j, j - 1);
+            }
         }
-            
-      }(A[j].compareTo(A[j-1])
-// private class TitleComparator implements Comparator<Song> {
-// @Override
-// public int compare(Song a, Song b) {
-// return ;
-// }
-// }
-//
-//
-// private class GenreComparator implements Comparator<Song> {
-// @Override
-// public int compare(Song a, Song b) {
-// return a.getGenre().compareToIgnoreCase(b.getGenre());
-// }
-// }
-//
-//
-// private class ArtistComparator implements Comparator<Song> {
-// @Override
-// public int compare(Song a, Song b) {
-// return a.getArtist().compareToIgnoreCase(b.getArtist());
-// }
-// }
-//
-//
-// private class YearComparator implements Comparator<Song> {
-// @Override
-// public int compare(Song a, Song b) {
-// return a.getYear() < b.getYear()
-// ? -1
-// : a.getYear() == b.getYear() ? 0 : 1;
-// }
-// }
+    }
 
+
+    public void inssortGenre() {
+        for (int i = 0; i < library.size(); i++) { // Insert i'th record
+            for (int j = i; (j >= 0) && library.get(j).getGenre()
+                .compareToIgnoreCase(library.get(j - 1).getGenre()) < 0; j--) {
+                library.swap(j, j - 1);
+            }
+        }
+    }
+
+
+    public void inssortArtist() {
+        for (int i = 0; i < library.size(); i++) { // Insert i'th record
+            for (int j = i; (j >= 0) && library.get(j).getArtist()
+                .compareToIgnoreCase(library.get(j - 1).getArtist()) < 0; j--) {
+                library.swap(j, j - 1);
+            }
+        }
+    }
+
+
+    public void inssortYear() {
+        for (int i = 0; i < library.size(); i++) { // Insert i'th record
+            for (int j = i; (j >= 0) && library.get(j).getYear() < (library.get(
+                j - 1).getYear()); j--) {
+                library.swap(j, j - 1);
+            }
+        }
+    }
 }

@@ -109,6 +109,11 @@ public class LinkedList<E> implements Iterable<E> {
         public E getData() {
             return data;
         }
+
+
+        public void setData(E newData) {
+            this.data = newData;
+        }
     }
 
     /**
@@ -360,23 +365,19 @@ public class LinkedList<E> implements Iterable<E> {
         builder.append("}");
         return builder.toString();
     }
-    
+
+
+    // What if they are right next to each other?
     public void swap(int index1, int index2) {
-        Node<E> node1 = (Node<E>) this.getNodeAtIndex(index1);
-        Node<E> node2 = (Node<E>) this.getNodeAtIndex(index2);
-        Node<E> node1Prev = (Node<E>) node1.previous();
-        Node<E> node1Next = (Node<E>) node1.next();
-        Node<E> node2Prev = (Node<E>) node2.previous();
-        Node<E> node2Next = (Node<E>) node2.next();
-        
-        node1.setNext(node2Next);
-        node1.setPrevious(node2Prev);
-        node2.setNext(node1Next);
-        node2.setPrevious(node1Prev);
-        node1Prev.setNext(node2);
-        node1Next.setPrevious(node2);
-        node2Prev.setNext(node1);
-        node2Next.setPrevious(node1);
+        if (Math.max(index1, index2) < this.size() && Math.min(index1,
+            index2) >= 0) {
+            E data1 = this.getNodeAtIndex(index1).getData();
+            E data2 = this.getNodeAtIndex(index2).getData();
+            this.getNodeAtIndex(index1).setData(data2);
+            this.getNodeAtIndex(index2).setData(data1);
+        } else {
+            throw new IllegalArgumentException("Index is outside of allowed range");
+        }
     }
 
 
