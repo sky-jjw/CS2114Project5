@@ -16,7 +16,7 @@ package project5;
  * @author James Mullen mullenj
  * @version 04/10/2019
  */
-public class Song implements Comparable<Song> {
+public class Song {
 
     private String artist;
     private String genre;
@@ -125,20 +125,6 @@ public class Song implements Comparable<Song> {
      */
     public String getTitle() {
         return title;
-    }
-
-
-    /*
-     * (non-Javadoc)
-     * Not sure how we want to implement this compare to as we will need 4 of
-     * them
-     * 
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
-    @Override
-    public int compareTo(Song o) {
-        // TODO Auto-generated method stub
-        return 0;
     }
     
     /**
