@@ -7,7 +7,7 @@
  * accept the actions of those who do.
  * -- James Mullen (mullenj)
  */
-package project5;
+package prj5;
 
 /**
  * Song will contain the data for the artist, name, genre, and year of a song as

@@ -7,7 +7,7 @@
  * accept the actions of those who do.
  * -- James Mullen (mullenj)
  */
-package project5;
+package prj5;
 
 /**
  * The sorter implements the sort functionality for the LinkedList allowing it
