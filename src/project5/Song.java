@@ -73,6 +73,30 @@ public class Song implements Comparable<Song> {
 
 
     /**
+     * add will add to the 2D array of the type requested.
+     * 
+     * @param type
+     *            data requested
+     * @param subtype
+     *            subtype of the data
+     * @param yesNo
+     *            whether the person liked/listened the song or not
+     * @param listenedLiked
+     *            if this data point is for listened or liked (0 or 2 to make
+     *            reference in 2D array easy)
+     */
+    public void add(Type type, int subtype, boolean yes, int listenedLiked) {
+
+        int[][] typeArray = this.retrieve(type);
+        if (yes) {
+            typeArray[listenedLiked][subtype]++;
+        }
+        typeArray[listenedLiked + 1][subtype]++;
+
+    }
+
+
+    /**
      * @return the artist
      */
     public String getArtist() {
@@ -106,7 +130,9 @@ public class Song implements Comparable<Song> {
 
     /*
      * (non-Javadoc)
-     * Not sure how we want to implement this compare to as we will need 4 of them
+     * Not sure how we want to implement this compare to as we will need 4 of
+     * them
+     * 
      * @see java.lang.Comparable#compareTo(java.lang.Object)
      */
     @Override
