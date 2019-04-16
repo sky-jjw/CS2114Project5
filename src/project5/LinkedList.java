@@ -360,6 +360,24 @@ public class LinkedList<E> implements Iterable<E> {
         builder.append("}");
         return builder.toString();
     }
+    
+    public void swap(int index1, int index2) {
+        Node<E> node1 = (Node<E>) this.getNodeAtIndex(index1);
+        Node<E> node2 = (Node<E>) this.getNodeAtIndex(index2);
+        Node<E> node1Prev = (Node<E>) node1.previous();
+        Node<E> node1Next = (Node<E>) node1.next();
+        Node<E> node2Prev = (Node<E>) node2.previous();
+        Node<E> node2Next = (Node<E>) node2.next();
+        
+        node1.setNext(node2Next);
+        node1.setPrevious(node2Prev);
+        node2.setNext(node1Next);
+        node2.setPrevious(node1Prev);
+        node1Prev.setNext(node2);
+        node1Next.setPrevious(node2);
+        node2Prev.setNext(node1);
+        node2Next.setPrevious(node1);
+    }
 
 
     private class DLListIterator<A> implements Iterator<E> {
@@ -473,43 +491,4 @@ public class LinkedList<E> implements Iterable<E> {
     public Iterator<E> iterator() {
         return new DLListIterator<E>();
     }
-
-//    static <T extends Comparable<T>> void inssort(T[] A) {
-//        for (int i=1; i<A.length; i++) // Insert i'th record
-//          for (int j=i; (j>0) && (A[j].compareTo(A[j-1]) < 0); j--)
-//            swap(A, j, j-1);
-//      }
-//    private class TitleComparator implements Comparator<Song> {
-//        @Override
-//        public int compare(Song a, Song b) {
-//            return a.getTitle().compareToIgnoreCase(b.getTitle());
-//        }
-//    }
-//
-//
-//    private class GenreComparator implements Comparator<Song> {
-//        @Override
-//        public int compare(Song a, Song b) {
-//            return a.getGenre().compareToIgnoreCase(b.getGenre());
-//        }
-//    }
-//
-//
-//    private class ArtistComparator implements Comparator<Song> {
-//        @Override
-//        public int compare(Song a, Song b) {
-//            return a.getArtist().compareToIgnoreCase(b.getArtist());
-//        }
-//    }
-//
-//
-//    private class YearComparator implements Comparator<Song> {
-//        @Override
-//        public int compare(Song a, Song b) {
-//            return a.getYear() < b.getYear()
-//                ? -1
-//                : a.getYear() == b.getYear() ? 0 : 1;
-//        }
-//    }
-
 }
