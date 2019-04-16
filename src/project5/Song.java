@@ -140,4 +140,33 @@ public class Song implements Comparable<Song> {
         // TODO Auto-generated method stub
         return 0;
     }
+    
+    /**
+     * Overrides the toString method.
+     * @return the string representation of this song
+     */
+    @Override
+    public String toString()
+    {
+        /*
+        StringBuilder builder = new StringBuilder(artist);
+        builder.append(", ");
+        builder.append(genre);
+        builder.append(", ");
+        builder.append(year);
+        builder.append(", ");
+        builder.append(title);
+        return builder.toString();
+        */
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                builder.append(hobby[j][i]);
+                builder.append(" ");
+            }
+        }
+        return builder.toString();
+    }
 }
