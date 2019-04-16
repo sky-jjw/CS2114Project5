@@ -9,6 +9,7 @@
  */
 package project5;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -472,5 +473,43 @@ public class LinkedList<E> implements Iterable<E> {
     public Iterator<E> iterator() {
         return new DLListIterator<E>();
     }
+
+//    static <T extends Comparable<T>> void inssort(T[] A) {
+//        for (int i=1; i<A.length; i++) // Insert i'th record
+//          for (int j=i; (j>0) && (A[j].compareTo(A[j-1]) < 0); j--)
+//            swap(A, j, j-1);
+//      }
+//    private class TitleComparator implements Comparator<Song> {
+//        @Override
+//        public int compare(Song a, Song b) {
+//            return a.getTitle().compareToIgnoreCase(b.getTitle());
+//        }
+//    }
+//
+//
+//    private class GenreComparator implements Comparator<Song> {
+//        @Override
+//        public int compare(Song a, Song b) {
+//            return a.getGenre().compareToIgnoreCase(b.getGenre());
+//        }
+//    }
+//
+//
+//    private class ArtistComparator implements Comparator<Song> {
+//        @Override
+//        public int compare(Song a, Song b) {
+//            return a.getArtist().compareToIgnoreCase(b.getArtist());
+//        }
+//    }
+//
+//
+//    private class YearComparator implements Comparator<Song> {
+//        @Override
+//        public int compare(Song a, Song b) {
+//            return a.getYear() < b.getYear()
+//                ? -1
+//                : a.getYear() == b.getYear() ? 0 : 1;
+//        }
+//    }
 
 }

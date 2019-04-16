@@ -58,7 +58,7 @@ public class Song implements Comparable<Song> {
      *            data requested
      * @return int[][] of the type requested
      */
-    public int[][] retrieve(Type type) {
+    public int[][] retrieve(TypeEnum type) {
         switch (type) {
             case HOBBY:
                 return hobby;
@@ -85,7 +85,7 @@ public class Song implements Comparable<Song> {
      *            if this data point is for listened or liked (0 or 2 to make
      *            reference in 2D array easy)
      */
-    public void add(Type type, int subtype, boolean yes, int listenedLiked) {
+    public void add(TypeEnum type, int subtype, boolean yes, int listenedLiked) {
 
         int[][] typeArray = this.retrieve(type);
         if (yes) {

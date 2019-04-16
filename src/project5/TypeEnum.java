@@ -15,6 +15,6 @@ package project5;
  * @author James Mullen mullenj
  * @version 04/10/2019
  */
-public enum Type {
+public enum TypeEnum {
     MAJOR, HOBBY, REGION;
 }
