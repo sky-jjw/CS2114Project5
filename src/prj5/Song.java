@@ -85,7 +85,11 @@ public class Song {
      *            if this data point is for listened or liked (0 or 2 to make
      *            reference in 2D array easy)
      */
-    public void add(TypeEnum type, int subtype, boolean yes, int listenedLiked) {
+    public void add(
+        TypeEnum type,
+        int subtype,
+        boolean yes,
+        int listenedLiked) {
 
         int[][] typeArray = this.retrieve(type);
         if (yes) {
@@ -126,33 +130,33 @@ public class Song {
     public String getTitle() {
         return title;
     }
-    
+
+
     /**
      * Overrides the toString method.
+     * example:
+     * Song Title: All These Things I've Done
+     * Song Artist: The Killers
+     * Song Genre: alternative
+     * Song Year: 2005
+     * 
      * @return the string representation of this song
      */
     @Override
-    public String toString()
-    {
-        /*
-        StringBuilder builder = new StringBuilder(artist);
-        builder.append(", ");
-        builder.append(genre);
-        builder.append(", ");
-        builder.append(year);
-        builder.append(", ");
-        builder.append(title);
-        return builder.toString();
-        */
+    public String toString() {
+
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                builder.append(hobby[j][i]);
-                builder.append(" ");
-            }
-        }
+        builder.append("Song Title: ");
+        builder.append(title);
+        builder.append("\n");
+        builder.append("Song Artist: ");
+        builder.append(artist);
+        builder.append("\n");
+        builder.append("Song Genre: ");
+        builder.append(genre);
+        builder.append("\n");
+        builder.append("Song Year: ");
+        builder.append(year);
         return builder.toString();
     }
 }
