@@ -10,8 +10,8 @@ import java.util.Iterator;
  * @author Wyatt Muller (wtmuller22)
  * @version 2019.04.16
  * 
- *          Instantiated and called by the GUI.
- *          Updates everything on the backend accordingly.
+ * Instantiated and called by the GUI.
+ * Updates everything on the backend accordingly.
  */
 public class Backend {
 

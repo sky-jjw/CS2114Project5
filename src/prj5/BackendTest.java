@@ -30,15 +30,11 @@ public class BackendTest extends TestCase {
 
 
     /**
-     * testAll will test all of the backend methods
+     * Tests the default order of the library.
      */
-    public void testAll() {
-        b.retrieveSwitch(TypeEnum.HOBBY);
-        b.sort(0);
-        b.sort(1);
-        b.sort(2);
+    public void testDefaultOrder() {
         LinkedList<Song> library = b.getLibrary();
-        assertEquals(library.get(0).getArtist(), "timmy");
+        assertEquals(library.get(0).getArtist(), "The Killers");
 
     }
 
