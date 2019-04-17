@@ -125,5 +125,14 @@ public class Backend {
         }
     }
     
+    /**
+     * Accessor method for library.
+     * @return library
+     */
+    public LinkedList<Song> getLibrary()
+    {
+        return library;
+    }
+    
     
 }
