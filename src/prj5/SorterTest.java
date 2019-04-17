@@ -20,16 +20,66 @@ import student.TestCase;
 public class SorterTest extends TestCase {
 
     private LinkedList<Song> list;
+    private Sorter sorter;
 
 
+    /**
+     * setUp method will set up the sorter test with a sorter and song linked
+     * list
+     */
     public void setUp() {
         list = new LinkedList<Song>();
-        Song song1 = new Song("James", "Rock", 2019, "Song1");
-        Song song2 = new Song("Jason", "Hip-Hop", 2011, "Song2");
-        Song song3 = new Song("John", "R&B", 2000, "Song3");
+        Song song1 = new Song("James", "Rock", 2019, "one");
+        Song song2 = new Song("Jason", "Hip-Hop", 2011, "two");
+        Song song3 = new Song("John", "R&B", 2000, "three");
         list.add(song1);
         list.add(song2);
         list.add(song3);
+        sorter = new Sorter(list);
     }
 
+
+    /**
+     * testTitleSort will make sure the correct order is outputted
+     */
+    public void testTitleSort() {
+        sorter.inssortTitle();
+        list = sorter.getLibrary();
+        assertEquals(list.get(0).getTitle(), "one");
+        assertEquals(list.get(1).getTitle(), "three");
+        assertEquals(list.get(2).getTitle(), "two");
+    }
+    
+    /**
+     * testTitleSort will make sure the correct order is outputted
+     */
+    public void testGenreSort() {
+        sorter.inssortGenre();
+        list = sorter.getLibrary();
+        assertEquals(list.get(0).getGenre(), "Hip-Hop");
+        assertEquals(list.get(1).getGenre(), "R&B");
+        assertEquals(list.get(2).getGenre(), "Rock");
+    }
+    
+    /**
+     * testTitleSort will make sure the correct order is outputted
+     */
+    public void testYearSort() {
+        sorter.inssortYear();
+        list = sorter.getLibrary();
+        assertEquals(list.get(0).getYear(), 2000);
+        assertEquals(list.get(1).getYear(), 2011);
+        assertEquals(list.get(2).getYear(), 2019);
+    }
+    
+    /**
+     * testTitleSort will make sure the correct order is outputted
+     */
+    public void testArtistSort() {
+        sorter.inssortArtist();
+        list = sorter.getLibrary();
+        assertEquals(list.get(0).getArtist(), "James");
+        assertEquals(list.get(1).getArtist(), "Jason");
+        assertEquals(list.get(2).getArtist(), "John");
+    }
 }
