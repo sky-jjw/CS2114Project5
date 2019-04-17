@@ -39,8 +39,8 @@ public class Sorter {
      */
     public LinkedList<Song> getLibrary() {
         return library;
+        
     }
-
 
     public void inssortTitle() {
         for (int i = 0; i < library.size(); i++) { // Insert i'th record
@@ -80,4 +80,5 @@ public class Sorter {
             }
         }
     }
+
 }
