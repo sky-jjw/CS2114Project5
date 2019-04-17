@@ -47,7 +47,7 @@ public class Sorter {
     public void inssortTitle() {
         for (int i = 1; i < library.size(); i++) { // Insert i'th record
             for (int j = i; (j > 0) && library.get(j).getTitle()
-                .compareToIgnoreCase(library.get(j - 1).getTitle()) < 0; j--) {
+                .compareTo(library.get(j - 1).getTitle()) < 0; j--) {
                 library.swap(j, j - 1);
             }
         }
@@ -59,7 +59,7 @@ public class Sorter {
     public void inssortGenre() {
         for (int i = 1; i < library.size(); i++) { // Insert i'th record
             for (int j = i; (j > 0) && library.get(j).getGenre()
-                .compareToIgnoreCase(library.get(j - 1).getGenre()) < 0; j--) {
+                .compareTo(library.get(j - 1).getGenre()) < 0; j--) {
                 library.swap(j, j - 1);
             }
         }
@@ -71,7 +71,7 @@ public class Sorter {
     public void inssortArtist() {
         for (int i = 1; i < library.size(); i++) { // Insert i'th record
             for (int j = i; (j > 0) && library.get(j).getArtist()
-                .compareToIgnoreCase(library.get(j - 1).getArtist()) < 0; j--) {
+                .compareTo(library.get(j - 1).getArtist()) < 0; j--) {
                 library.swap(j, j - 1);
             }
         }
