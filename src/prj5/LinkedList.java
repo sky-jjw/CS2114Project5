@@ -264,28 +264,6 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-    /**
-     * Gets the last time the given object is in the list
-     *
-     * @param obj
-     *            the object to look for
-     * @return the last position of it. -1 If it is not in the list
-     */
-    public int lastIndexOf(E obj) {
-        /*
-         * We should go from the end of the list as then we an stop once we find
-         * the first one
-         */
-        Node<E> current = tail.previous();
-        for (int i = size() - 1; i >= 0; i--) {
-            if (current.getData().equals(obj)) {
-                return i;
-            }
-            current = current.previous();
-        }
-        return -1; // if we do not find it
-    }
-
 
     /**
      * Returns a string representation of the list If a list contains A, B, and

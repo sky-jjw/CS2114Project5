@@ -116,23 +116,6 @@ public class LinkedListTest extends TestCase {
     }
 
 
-    /**
-     * Test lastIndexOf when the list is empty, when the object is not in the
-     * list, and when it is at the beginning or end
-     */
-    public void testLastIndexOf() {
-        assertEquals(-1, list.lastIndexOf("A"));
-        list.add("A");
-        assertEquals(0, list.lastIndexOf("A"));
-        list.add("A");
-        assertEquals(1, list.lastIndexOf("A"));
-        list.add("B");
-        assertEquals(1, list.lastIndexOf("A"));
-        assertEquals(2, list.lastIndexOf("B"));
-        list.add("A");
-        assertEquals(3, list.lastIndexOf("A"));
-    }
-
 
     /**
      * Tests isEmpty when empty and full
