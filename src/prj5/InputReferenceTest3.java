@@ -57,7 +57,6 @@ public class InputReferenceTest3 extends student.TestCase {
         assertFuzzyEquals("Output not as expected for input files "
                 + "MusicSurveyDataTest2.csv and SongListTest2.csv",
                 output2TitleGenreHobby, systemOut().getHistory());
-
     }
 
     
