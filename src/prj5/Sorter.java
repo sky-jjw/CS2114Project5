@@ -41,7 +41,9 @@ public class Sorter {
         return library;
         
     }
-
+    /**
+     * inssortTitle will insertion sort by title
+     */
     public void inssortTitle() {
         for (int i = 1; i < library.size(); i++) { // Insert i'th record
             for (int j = i; (j > 0) && library.get(j).getTitle()
@@ -51,7 +53,9 @@ public class Sorter {
         }
     }
 
-
+    /**
+     * inssortGenre will insertion sort by genre
+     */
     public void inssortGenre() {
         for (int i = 1; i < library.size(); i++) { // Insert i'th record
             for (int j = i; (j > 0) && library.get(j).getGenre()
@@ -61,7 +65,9 @@ public class Sorter {
         }
     }
 
-
+    /**
+     * inssortArtist will insertion sort by Artist
+     */
     public void inssortArtist() {
         for (int i = 1; i < library.size(); i++) { // Insert i'th record
             for (int j = i; (j > 0) && library.get(j).getArtist()
@@ -71,7 +77,9 @@ public class Sorter {
         }
     }
 
-
+    /**
+     * inssortYear will insertion sort by Year
+     */
     public void inssortYear() {
         for (int i = 1; i < library.size(); i++) { // Insert i'th record
             for (int j = i; (j > 0) && library.get(j).getYear() < (library.get(

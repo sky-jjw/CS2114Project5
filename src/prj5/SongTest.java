@@ -49,7 +49,8 @@ public class SongTest {
     @Test
     public void testToString() {
         assertEquals(sing.toString(),
-            "Song Title: Congratulations\nSong Artist: Post Malone\nSong Genre: rap\nSong Year: 2016");
+            "Song Title: Congratulations\nSong Artist: "
+                + "Post Malone\nSong Genre: rap\nSong Year: 2016");
     }
 
 
@@ -80,6 +81,7 @@ public class SongTest {
                 assertEquals(major[i][j], res[i][j]);
             }
         }
+        assertNull(sing.retrieve(TypeEnum.OTHER));
     }
 
 
@@ -96,31 +98,31 @@ public class SongTest {
             }
         }
     }
-    
+
+
     /**
      * tests the add method for liked
      */
     @Test
-    public void testAdd()
-    {
+    public void testAdd() {
         int[][] res = sing.retrieve(TypeEnum.REGION);
-        assertEquals(0 ,res[2][2]);
-        assertEquals(0 ,res[3][2]);
+        assertEquals(0, res[2][2]);
+        assertEquals(0, res[3][2]);
         sing.add(TypeEnum.REGION, 2, true, 2);
         res = sing.retrieve(TypeEnum.REGION);
-        assertEquals(1 ,res[2][2]);
-        assertEquals(1 ,res[3][2]);
+        assertEquals(1, res[2][2]);
+        assertEquals(1, res[3][2]);
     }
-    
+
+
     /**
      * tests add method of disliked
      */
     @Test
-    public void testAddFalse()
-    {
+    public void testAddFalse() {
         sing.add(TypeEnum.REGION, 2, false, 2);
         int[][] res = sing.retrieve(TypeEnum.REGION);
-        assertEquals(0 ,res[2][2]);
-        assertEquals(1 ,res[3][2]);
+        assertEquals(0, res[2][2]);
+        assertEquals(1, res[3][2]);
     }
 }

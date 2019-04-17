@@ -116,7 +116,6 @@ public class LinkedListTest extends TestCase {
     }
 
 
-
     /**
      * Tests isEmpty when empty and full
      */
@@ -199,7 +198,7 @@ public class LinkedListTest extends TestCase {
         assertEquals(list.size(), 0);
         assertTrue(list.isEmpty());
     }
-    
+
 
     /**
      * Tests get when the index is greater than or equal to size and when the
@@ -223,6 +222,44 @@ public class LinkedListTest extends TestCase {
             exception = e;
         }
         assertTrue(exception instanceof IndexOutOfBoundsException);
+    }
+
+
+    /**
+     * testSwap will test the swap method to make sure it acts correctly
+     */
+    public void testSwap() {
+        list.add("James");
+        list.add("Jason");
+        list.add("John");
+        list.swap(0, 2);
+        assertEquals(list.get(0), "John");
+        assertEquals(list.get(1), "Jason");
+        assertEquals(list.get(2), "James");
+        Exception exception = null;
+        try {
+            list.swap(-1, 0);
+        }
+        catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertTrue(exception instanceof IllegalArgumentException);
+        exception = null;
+        try {
+            list.swap(-1, 3);
+        }
+        catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertTrue(exception instanceof IllegalArgumentException);
+        exception = null;
+        try {
+            list.swap(0, 3);
+        }
+        catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertTrue(exception instanceof IllegalArgumentException);
     }
 
 }

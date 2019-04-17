@@ -16,5 +16,5 @@ package prj5;
  * @version 04/10/2019
  */
 public enum TypeEnum {
-    MAJOR, HOBBY, REGION;
+    MAJOR, HOBBY, REGION, OTHER;
 }

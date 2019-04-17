@@ -16,7 +16,8 @@ import java.util.Iterator;
 public class Backend {
 
     private LinkedList<Song> library;
-    private Iterator<Song> libraryIter;
+    // private Iterator<Song> libraryIter; commented out for webcat intermediate
+    // submission
     private Song[] displayedSongs;
 
 
@@ -24,7 +25,9 @@ public class Backend {
      * Constructs a new backend object.
      * 
      * @param songFile
+     *            file of songs
      * @param surveyFile
+     *            file of survey results
      * @throws FileNotFoundException
      */
     public Backend(String songFile, String surveyFile)
@@ -116,9 +119,11 @@ public class Backend {
         restart();
     }
 
-
+    /**
+     * restart reinitializes the iterator for use in the next/previous page methods
+     */
     private void restart() {
-        libraryIter = library.iterator();
+        Iterator<Song> libraryIter = library.iterator();
         for (int i = 0; i < 9; i++) {
             if (libraryIter.hasNext()) {
                 displayedSongs[i] = libraryIter.next();

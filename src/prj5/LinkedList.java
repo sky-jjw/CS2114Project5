@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
  * and their data. It will also provide iterator and comparator functionality
  * for iterating and sorts
  * 
- *
+ * @param <E>
  * @author Mark Wiggans (mmw125)
  * @version 3/29/15
  * @author Eric Williamson
@@ -110,6 +110,12 @@ public class LinkedList<E> implements Iterable<E> {
         }
 
 
+        /**
+         * setData will allow us to set the data in the node
+         * 
+         * @param newData
+         *            the new data for the node
+         */
         public void setData(E newData) {
             this.data = newData;
         }
@@ -264,7 +270,6 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-
     /**
      * Returns a string representation of the list If a list contains A, B, and
      * C, the following should be returned "{A, B, C}" (Without the quotations)
@@ -291,7 +296,15 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-    // What if they are right next to each other?
+    /**
+     * swap will allow us to swap the data in two nodes to allow for easy sort
+     * functionality
+     * 
+     * @param index1
+     *            index of the first node to swap
+     * @param index2
+     *            index of the second node to swap
+     */
     public void swap(int index1, int index2) {
         if (Math.max(index1, index2) < this.size() && Math.min(index1,
             index2) >= 0) {
@@ -307,6 +320,14 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
+    /**
+     * 
+     * DLListIterator will allow us to move forward and backwards through the
+     * linked list
+     *
+     * @author James Mullen mullenj
+     * @version 04/17/2019
+     */
     private class DLListIterator<A> implements Iterator<E> {
         private Node<E> nextNode;
         private boolean nextCall;
@@ -330,15 +351,6 @@ public class LinkedList<E> implements Iterable<E> {
             return nextNode.getData() != null;
         }
 
-
-        /**
-         * Checks if there are more elements in the list
-         *
-         * @return true if there are more elements in the list
-         */
-        public boolean hasPrevious() {
-            return nextNode.previous().getData() != null;
-        }
 
 
         /**
@@ -364,25 +376,6 @@ public class LinkedList<E> implements Iterable<E> {
         }
 
 
-        /**
-         * Gets the previous value in the list
-         *
-         * @return the next value
-         * @throws NoSuchElementException
-         *             if there are no nodes left in the list
-         */
-        public E previous() {
-            if (this.hasPrevious()) {
-                nextNode = nextNode.previous();
-                nextCall = true;
-                return nextNode.getData();
-            }
-            else {
-                throw new NoSuchElementException(
-                    "Illegal call to next() there are "
-                        + "no more elements in the list");
-            }
-        }
 
 
         /**
