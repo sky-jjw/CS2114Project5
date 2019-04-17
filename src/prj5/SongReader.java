@@ -69,20 +69,35 @@ public class SongReader {
             while (iterator.hasNext())
             {
                 String heard = lineScanner.next();
-                String likes = lineScanner.next();
+                String likes;
+                if (lineScanner.hasNext())
+                {
+                    likes = lineScanner.next();
+                }
+                else
+                {
+                    likes = "";
+                }
                 boolean heardYes = "Yes".equals(heard);
                 boolean likeYes = "Yes".equals(likes);
                 currSong = iterator.next();
-                boolean skipSong = !("No".equals(heard) || heardYes) 
-                                        || !("No".equals(likes) || likeYes);
-                if (!(skipPerson || skipSong))
+                boolean skipHeard = !("No".equals(heard) || heardYes);
+                boolean skipLikes = !("No".equals(likes) || likeYes);
+                if (!(skipPerson))
                 {
-                    currSong.add(TypeEnum.HOBBY, hobbyIdx, heardYes, 0);
-                    currSong.add(TypeEnum.HOBBY, hobbyIdx, likeYes, 2);
-                    currSong.add(TypeEnum.MAJOR, majorIdx, heardYes, 0);
-                    currSong.add(TypeEnum.MAJOR, majorIdx, likeYes, 2);
-                    currSong.add(TypeEnum.REGION, regionIdx, heardYes, 0);
-                    currSong.add(TypeEnum.REGION, regionIdx, likeYes, 2);
+                    if (!skipHeard)
+                    {
+                        currSong.add(TypeEnum.HOBBY, hobbyIdx, heardYes, 0);
+                        currSong.add(TypeEnum.MAJOR, majorIdx, heardYes, 0);
+                        currSong.add(TypeEnum.REGION, regionIdx, heardYes, 0);
+                    }
+                    if (!skipLikes)
+                    {
+                        currSong.add(TypeEnum.HOBBY, hobbyIdx, likeYes, 2);
+                        currSong.add(TypeEnum.MAJOR, majorIdx, likeYes, 2);
+                        currSong.add(TypeEnum.REGION, regionIdx, likeYes, 2);
+                        
+                    }
                 }
             }
             lineScanner.close();
