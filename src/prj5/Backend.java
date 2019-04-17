@@ -29,9 +29,8 @@ public class Backend {
     {
         SongReader reader = new SongReader(songFile, surveyFile);
         library = reader.getLibrary();
-        sort(3);
         displayedSongs = new Song[9];
-        restart();
+        sort(3);
     }
     
     /**

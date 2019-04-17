@@ -32,6 +32,9 @@ public class Input {
         back.sort(1);
         int[][][] data = retrieveAllData(TypeEnum.HOBBY);
         outputData(data);
+        back.sort(3);
+        data = retrieveAllData(TypeEnum.HOBBY);
+        outputData(data);
     }
     
     private static int[][][] retrieveAllData(TypeEnum arrayType)
@@ -48,7 +51,14 @@ public class Input {
             {
                 for (int k = 0; k < 4; k++)
                 {
-                    data[i][j][k] = (int)((currData[j*2][k] * 100) / currData[j*2 + 1][k]);
+                    if (currData[j*2 + 1][k] != 0)
+                    {
+                        data[i][j][k] = (int)((currData[j*2][k] * 100) / currData[j*2 + 1][k]);
+                    }
+                    else
+                    {
+                        data[i][j][k] = 0;
+                    }
                 }
             }
             i++;
