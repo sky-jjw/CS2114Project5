@@ -182,31 +182,6 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-    /**
-     * Checks if the list contains the given object
-     *
-     * @param obj
-     *            the object to check for
-     * @return true if it contains the object
-     */
-    public boolean contains(E obj) {
-        return lastIndexOf(obj) != -1;
-    }
-
-
-    /**
-     * Gets the object at the given position
-     *
-     * @param index
-     *            where the object is located
-     * @return The object at the given position
-     * @throws IndexOutOfBoundsException
-     *             if there no node at the given index
-     */
-    public E get(int index) {
-        return getNodeAtIndex(index).getData();
-    }
-
 
     /**
      * Adds a element to the end of the list
@@ -300,45 +275,6 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-    /**
-     * Removes the element at the specified index from the list
-     *
-     * @param index
-     *            where the object is located
-     * @throws IndexOutOfBoundsException
-     *             if there is not an element at the index
-     * @return true if successful
-     */
-    public boolean remove(int index) {
-        Node<E> nodeToBeRemoved = getNodeAtIndex(index);
-        nodeToBeRemoved.previous().setNext(nodeToBeRemoved.next());
-        nodeToBeRemoved.next().setPrevious(nodeToBeRemoved.previous());
-        size--;
-        return true;
-    }
-
-
-    /**
-     * Removes the first object in the list that .equals(obj)
-     *
-     * @param obj
-     *            the object to remove
-     * @return true if the object was found and removed
-     */
-
-    public boolean remove(E obj) {
-        Node<E> current = head.next();
-        while (!current.equals(tail)) {
-            if (current.getData().equals(obj)) {
-                current.previous().setNext(current.next());
-                current.next().setPrevious(current.previous());
-                size--;
-                return true;
-            }
-            current = current.next();
-        }
-        return false;
-    }
 
 
     /**
