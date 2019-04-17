@@ -38,6 +38,7 @@ public class LinkedListTest extends TestCase {
         assertEquals(1, list.size());
         list.add("B");
         assertEquals(2, list.size());
+        assertEquals("B", list.get(1));
 
     }
 
@@ -49,9 +50,12 @@ public class LinkedListTest extends TestCase {
     public void testAddIndex() {
         list.add("B");
         list.add(0, "A");
+        assertEquals("A", list.get(0));
         assertEquals(2, list.size());
         list.add(2, "D");
+        assertEquals("D", list.get(2));
         list.add(2, "C");
+        assertEquals("C", list.get(2));
     }
 
 
@@ -211,6 +215,31 @@ public class LinkedListTest extends TestCase {
         iter.remove();
         assertEquals(list.size(), 0);
         assertTrue(list.isEmpty());
+    }
+    
+
+    /**
+     * Tests get when the index is greater than or equal to size and when the
+     * index is less than zero
+     */
+    public void testGetException() {
+        Exception exception = null;
+        try {
+            list.get(-1);
+        }
+        catch (Exception e) {
+            exception = e;
+        }
+        assertTrue(exception instanceof IndexOutOfBoundsException);
+        exception = null;
+        list.add("A");
+        try {
+            list.get(1);
+        }
+        catch (IndexOutOfBoundsException e) {
+            exception = e;
+        }
+        assertTrue(exception instanceof IndexOutOfBoundsException);
     }
 
 }

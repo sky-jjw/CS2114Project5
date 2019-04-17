@@ -9,7 +9,6 @@
  */
 package prj5;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -182,6 +181,19 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
+    /**
+     * Gets the object at the given position
+     *
+     * @param index
+     *            where the object is located
+     * @return The object at the given position
+     * @throws IndexOutOfBoundsException
+     *             if there no node at the given index
+     */
+    public E get(int index) {
+        return getNodeAtIndex(index).getData();
+    }
+
 
     /**
      * Adds a element to the end of the list
@@ -275,8 +287,6 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
 
-
-
     /**
      * Returns a string representation of the list If a list contains A, B, and
      * C, the following should be returned "{A, B, C}" (Without the quotations)
@@ -311,8 +321,10 @@ public class LinkedList<E> implements Iterable<E> {
             E data2 = this.getNodeAtIndex(index2).getData();
             this.getNodeAtIndex(index1).setData(data2);
             this.getNodeAtIndex(index2).setData(data1);
-        } else {
-            throw new IllegalArgumentException("Index is outside of allowed range");
+        }
+        else {
+            throw new IllegalArgumentException(
+                "Index is outside of allowed range");
         }
     }
 
