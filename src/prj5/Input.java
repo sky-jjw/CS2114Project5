@@ -21,7 +21,14 @@ public class Input {
      * @throws FileNotFoundException 
      */
     public static void main(String[] args) throws FileNotFoundException {
-        back = new Backend(args[1], args[0]);
+        if (args.length == 2)
+        {
+            back = new Backend(args[1], args[0]);
+        }
+        else
+        {
+            back = new Backend("SongList2018.csv", "MusicSurveyData2018.csv");
+        }
         back.sort(1);
         int[][][] data = retrieveAllData(TypeEnum.HOBBY);
         outputData(data);
