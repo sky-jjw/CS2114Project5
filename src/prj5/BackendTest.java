@@ -37,6 +37,8 @@ public class BackendTest extends TestCase {
         b.sort(0);
         b.sort(1);
         b.sort(2);
+        LinkedList<Song> library = b.getLibrary();
+        assertEquals(library.get(0).getArtist(), "timmy");
 
     }
 

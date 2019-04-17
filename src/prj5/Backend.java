@@ -119,8 +119,10 @@ public class Backend {
         restart();
     }
 
+
     /**
-     * restart reinitializes the iterator for use in the next/previous page methods
+     * restart reinitializes the iterator for use in the next/previous page
+     * methods
      */
     private void restart() {
         Iterator<Song> libraryIter = library.iterator();
