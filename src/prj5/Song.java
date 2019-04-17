@@ -79,7 +79,7 @@ public class Song {
      *            data requested
      * @param subtype
      *            subtype of the data
-     * @param yesNo
+     * @param yes
      *            whether the person liked/listened the song or not
      * @param listenedLiked
      *            if this data point is for listened or liked (0 or 2 to make
@@ -159,4 +159,5 @@ public class Song {
         builder.append(year);
         return builder.toString();
     }
+    
 }
