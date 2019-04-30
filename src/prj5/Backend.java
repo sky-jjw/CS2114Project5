@@ -4,20 +4,19 @@
 package prj5;
 
 import java.io.FileNotFoundException;
-import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  * @author Wyatt Muller (wtmuller22)
  * @version 2019.04.16
  * 
- * Instantiated and called by the GUI.
- * Updates everything on the backend accordingly.
+ *          Instantiated and called by the GUI.
+ *          Updates everything on the backend accordingly.
  */
 public class Backend {
 
     private LinkedList<Song> library;
-    // private Iterator<Song> libraryIter; commented out for webcat intermediate
-    // submission
+    private ListIterator<Song> libraryIter;
     private Song[] displayedSongs;
 
 
@@ -41,6 +40,7 @@ public class Backend {
 
     /**
      * Returns the data associated with the TypeEnum.
+     * Returns 0 in data for null displayed songs.
      * 
      * @param arrayType
      *            to be retrieved
@@ -49,7 +49,7 @@ public class Backend {
      */
     public int[][][] retrieveSwitch(TypeEnum arrayType) {
         int[][][] data = new int[9][2][4];
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; (i < 9 && displayedSongs[i] != null); i++) {
             Song curr = displayedSongs[i];
             int[][] currData = curr.retrieve(arrayType);
             for (int j = 0; j < 2; j++) {
@@ -61,33 +61,73 @@ public class Backend {
         }
         return data;
     }
-    
-    /*
-     * public String[] retrieveNextPage()
-     * {
-     * if (libraryIter.hasNext())
-     * {
-     * for (int i = 0; i < 9; i++)
-     * {
-     * if (libraryIter.hasNext())
-     * {
-     * displayedSongs[i] = libraryIter.next();
-     * }
-     * else
-     * {
-     * displayedSongs[i] = null;
-     * }
-     * }
-     * }
-     * }
+
+
+    /**
+     * Switches to next page of songs.
+     * 
+     * @return the title and artist of each song
      */
-    /*
-     * private String[] getNames()
-     * {
-     * String[] names = new String[9];
-     * for (int i = 0; i < display)
-     * }
+    public String[] retrieveNextPage() {
+        if (libraryIter.hasNext()) {
+            for (int i = 0; i < 9; i++) {
+                if (libraryIter.hasNext()) {
+                    displayedSongs[i] = libraryIter.next();
+                }
+                else {
+                    displayedSongs[i] = null;
+                }
+            }
+        }
+        return getNames();
+    }
+
+
+    /**
+     * Switches to previous page of songs.
+     * 
+     * @return the title and artist of each song
      */
+    public String[] retrievePreviousPage() {
+        int numSongs = countSongs();
+        for (int i = 0; i < numSongs; i++) {
+            libraryIter.previous();
+        }
+        for (int i = 0; (i < 9 && libraryIter.hasPrevious()); i++) {
+            libraryIter.previous();
+        }
+        return retrieveNextPage();
+    }
+
+
+    /**
+     * @return the number of not-null songs being displayed
+     */
+    private int countSongs() {
+        int count = 0;
+        for (int i = 0; i < 9; i++) {
+            if (displayedSongs[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    /**
+     * retrieves the title and artist of the
+     * displayedSongs.
+     * 
+     * @return string array of songs.
+     */
+    public String[] getNames() {
+        String[] names = new String[9];
+        for (int i = 0; (i < 9 && displayedSongs[i] != null); i++) {
+            names[i] = displayedSongs[i].getTitle() + ", by " + displayedSongs[i]
+                .getArtist();
+        }
+        return names;
+    }
 
 
     /**
@@ -126,12 +166,8 @@ public class Backend {
      * methods
      */
     private void restart() {
-        Iterator<Song> libraryIter = library.iterator();
-        for (int i = 0; i < 9; i++) {
-            if (libraryIter.hasNext()) {
-                displayedSongs[i] = libraryIter.next();
-            }
-        }
+        libraryIter = library.iterator();
+        retrieveNextPage();
     }
 
 

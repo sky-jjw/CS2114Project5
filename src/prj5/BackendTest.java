@@ -155,7 +155,6 @@ public class BackendTest extends TestCase {
      */
     public void testSort4()
     {
-        LinkedList<Song> library = b.getLibrary();
         boolean res = false;
         
         try {
@@ -165,6 +164,76 @@ public class BackendTest extends TestCase {
         {
             res = true;
             assertTrue(res);
+        }
+    }
+    
+    /**
+     * Tests the retrievePreviousPage method.
+     */
+    public void testPreviousStart()
+    {
+        String[] names = b.retrievePreviousPage();
+        String[] answers = {"All These Things I've Done, by The Killers",
+                            "All You Need Is Love, by The Beatles", 
+                            "American Pie, by Don McLean", 
+                            "Anarchy in the UK, by The Sex Pistols", 
+                            "Another One Bites the Dust, by Queen", 
+                            "Bad Blood, by Taylor Swift", 
+                            "Boom Boom Pow, by The Black Eyed Peas", 
+                            "Bridge Over Troubled Water, by Simon and Garfunkel", 
+                            "Call Me, by Blondie"};
+        for (int i = 0; i < 9; i++)
+        {
+            assertEquals(names[i], answers[i]);
+        }
+    }
+    
+    /**
+     * Tests the retrievePreviousPage method.
+     */
+    public void testPreviousBacktrack()
+    {
+        b.retrieveNextPage();
+        String[] names = b.retrievePreviousPage();
+        String[] answers = {"All These Things I've Done, by The Killers",
+                            "All You Need Is Love, by The Beatles", 
+                            "American Pie, by Don McLean", 
+                            "Anarchy in the UK, by The Sex Pistols", 
+                            "Another One Bites the Dust, by Queen", 
+                            "Bad Blood, by Taylor Swift", 
+                            "Boom Boom Pow, by The Black Eyed Peas", 
+                            "Bridge Over Troubled Water, by Simon and Garfunkel", 
+                            "Call Me, by Blondie"};
+        for (int i = 0; i < 9; i++)
+        {
+            assertEquals(names[i], answers[i]);
+        }
+    }
+    
+    /**
+     * Tests the retrieveNextPage method.
+     */
+    public void testNextEnd()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            b.retrieveNextPage();
+        }
+        String[] names = b.retrieveNextPage();
+        String[] answers = {"Upside Down, by Diana Ross", 
+                            "Watching the Detectives, by Elvis Costello", 
+                            "We Belong Together, by Mariah Carey", 
+                            "Yeah!, by Usher", 
+                            "You Can't Always Get What You Want, by The Rolling Stones", 
+                            null, null, null, null};
+        for (int i = 0; i < 9; i++)
+        {
+            assertEquals(names[i], answers[i]);
+        }
+        names = b.retrieveNextPage();
+        for (int i = 0; i < 9; i++)
+        {
+            assertEquals(names[i], answers[i]);
         }
     }
 }

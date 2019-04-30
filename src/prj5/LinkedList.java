@@ -9,7 +9,7 @@
  */
 package prj5;
 
-import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -327,10 +327,12 @@ public class LinkedList<E> implements Iterable<E> {
      *
      * @author James Mullen mullenj
      * @version 04/17/2019
+     * @param <A> some data type
      */
-    private class DLListIterator<A> implements Iterator<E> {
+    private class DLListIterator<A> implements ListIterator<E> {
         private Node<E> nextNode;
         private boolean nextCall;
+        private int currIdx;
 
 
         /**
@@ -338,6 +340,7 @@ public class LinkedList<E> implements Iterable<E> {
          */
         public DLListIterator() {
             nextNode = head.next();
+            currIdx = 0;
         }
 
 
@@ -350,8 +353,16 @@ public class LinkedList<E> implements Iterable<E> {
         public boolean hasNext() {
             return nextNode.getData() != null;
         }
-
-
+        
+        /**
+         * Checks if there are previous elements in the list
+         *
+         * @return true if there are previous elements in the list
+         */
+        @Override
+        public boolean hasPrevious() {
+            return nextNode.previous().getData() != null;
+        }
 
         /**
          * Gets the next value in the list
@@ -366,6 +377,7 @@ public class LinkedList<E> implements Iterable<E> {
                 Node<E> returnNode = nextNode;
                 nextNode = nextNode.next();
                 nextCall = true;
+                currIdx++;
                 return returnNode.getData();
             }
             else {
@@ -375,7 +387,26 @@ public class LinkedList<E> implements Iterable<E> {
             }
         }
 
-
+        /**
+         * Gets the previous value in the list
+         *
+         * @return the previous value
+         * @throws NoSuchElementException
+         *             if there are no nodes left in the list
+         */
+        @Override
+        public E previous() {
+            if (this.hasPrevious()) {
+                nextNode = nextNode.previous();
+                currIdx--;
+                return nextNode.getData();
+            }
+            else {
+                throw new NoSuchElementException(
+                    "Illegal call to previous() there are "
+                        + "no more elements in the list");
+            }
+        }
 
 
         /**
@@ -394,10 +425,44 @@ public class LinkedList<E> implements Iterable<E> {
                 prevNode.setNext(nextNode);
                 nextNode.setPrevious(prevNode);
                 size--;
+                currIdx--;
             }
             else {
                 throw new IllegalStateException("Next has not been called");
             }
+        }
+
+        /**
+         * @return the current index.
+         */
+        @Override
+        public int nextIndex() {
+            return currIdx;
+        }
+
+        /**
+         * @return the previous index.
+         */
+        @Override
+        public int previousIndex() {
+            return currIdx - 1;
+        }
+
+        /**
+         * Not going to be of use.
+         */
+        @Override
+        public void set(E e) {
+            // Not going to be implemented.            
+        }
+
+        /**
+         * Not going to be of use.
+         */
+        @Override
+        public void add(E e) {
+            // Not going to be implemented.
+            
         }
     }
 
@@ -408,7 +473,7 @@ public class LinkedList<E> implements Iterable<E> {
      * @see java.lang.Iterable#iterator()
      */
     @Override
-    public Iterator<E> iterator() {
+    public ListIterator<E> iterator() {
         return new DLListIterator<E>();
     }
 }
