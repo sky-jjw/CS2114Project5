@@ -29,7 +29,7 @@ public class SorterTest extends TestCase {
      */
     public void setUp() {
         list = new LinkedList<Song>();
-        Song song1 = new Song("James", "Rock", 2019, "Three");
+        Song song1 = new Song("James", "Rock", 2019, "three");
         Song song2 = new Song("Jason", "Hip-Hop", 2000, "one");
         Song song3 = new Song("Hayley", "R&B", 2011, "two");
         list.add(song1);
