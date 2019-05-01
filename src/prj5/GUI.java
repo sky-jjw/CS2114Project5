@@ -47,7 +47,7 @@ public class GUI {
         curRepresent = 0;
         texts = new TextShape[4];
         window = new Window();
-        window.setSize(1600, 900);
+        window.setSize(1280, 720);
         window.setTitle("Project 5");
         width = window.getGraphPanelWidth();
         height = window.getGraphPanelHeight();
@@ -83,8 +83,7 @@ public class GUI {
         tempB.onClick(this, "exit");
         window.addButton(tempB, WindowSide.SOUTH);
 
-        renderLegend();
-        renderSongs();
+        render();
     }
 
 
@@ -136,66 +135,212 @@ public class GUI {
     /**
      * renders the grid of songs
      */
-    private void renderSongs() {
+    private void render() {
         int padLeft = (int)(width * 0.05);
-        int padTop = 20;
+        int padTop = 50;
         int songWidth = (int)(width * 0.1);
         int songTextHeight = 35;
         int barWidth = songWidth / 2;
+        int curLeft = padLeft;
+        int curTop = padTop;
 
-        // example one
-        TextShape songTitle = new TextShape(padLeft + songWidth / 2, padTop,
-            "Song Ex Title");
-        songTitle.move(-songTitle.getWidth() / 2, 0);
-        songTitle.setBackgroundColor(Color.WHITE);
-        window.addShape(songTitle);
-        TextShape artist = new TextShape(padLeft + songWidth / 2, padTop
-            + textPad, "by Ex Artist");
-        artist.move(-artist.getWidth() / 2, 0);
-        artist.setBackgroundColor(Color.WHITE);
-        window.addShape(artist);
+        window.removeAllShapes();
+        renderLegend();
+        int[][][] data = backend.retrieveSwitch(getRType());
+        String[] names = backend.getNames();
+        String[] nameParts = { "", "" };
+        int percentSize = 0;
+        for (int i = 0; i < 9; i++) {
+            nameParts = names[i].split(", ");
+            curLeft = padLeft + (padLeft + songWidth) * (i % 3);
+            curTop = padTop + (songTextHeight + padTop + textPad * 2) * (i / 3);
+            TextShape songTitle = new TextShape(curLeft + songWidth / 2, curTop,
+                nameParts[0]);
+            songTitle.move(-songTitle.getWidth() / 2, 0);
+            songTitle.setBackgroundColor(Color.WHITE);
+            window.addShape(songTitle);
+            TextShape artist = new TextShape(curLeft + songWidth / 2, curTop
+                + textPad, nameParts[1]);
+            artist.move(-artist.getWidth() / 2, 0);
+            artist.setBackgroundColor(Color.WHITE);
+            window.addShape(artist);
 
-        int percentSize = 55;
-        Shape heard1 = new Shape(padLeft + (barWidth - percentSize), padTop
-            + songTextHeight, percentSize, textPad / 2, Color.red);
-        window.addShape(heard1);
-        percentSize = 65;
-        Shape heard2 = new Shape(padLeft + (barWidth - percentSize), padTop
-            + songTextHeight + textPad / 2, percentSize, textPad / 2,
-            Color.green);
-        window.addShape(heard2);
-        percentSize = 35;
-        Shape heard3 = new Shape(padLeft + (barWidth - percentSize), padTop
-            + songTextHeight + textPad, percentSize, textPad / 2, Color.blue);
-        window.addShape(heard3);
-        percentSize = 15;
-        Shape heard4 = new Shape(padLeft + (barWidth - percentSize), padTop
-            + songTextHeight + textPad + textPad / 2, percentSize, textPad / 2,
-            Color.orange);
-        window.addShape(heard4);
+            percentSize = data[i][0][0];
+            Shape heard1 = new Shape(curLeft + (barWidth - percentSize), curTop
+                + songTextHeight, percentSize, textPad / 2, Color.red);
+            window.addShape(heard1);
+            percentSize = data[i][0][1];
+            Shape heard2 = new Shape(curLeft + (barWidth - percentSize), curTop
+                + songTextHeight + textPad / 2, percentSize, textPad / 2,
+                Color.green);
+            window.addShape(heard2);
+            percentSize = data[i][0][2];
+            Shape heard3 = new Shape(curLeft + (barWidth - percentSize), curTop
+                + songTextHeight + textPad, percentSize, textPad / 2,
+                Color.blue);
+            window.addShape(heard3);
+            percentSize = data[i][0][3];
+            Shape heard4 = new Shape(curLeft + (barWidth - percentSize), curTop
+                + songTextHeight + textPad + textPad / 2, percentSize, textPad
+                    / 2, Color.orange);
+            window.addShape(heard4);
 
-        padLeft *= 2;
-        percentSize = 35;
-        Shape like1 = new Shape(padLeft, padTop + songTextHeight, percentSize,
-            textPad / 2, Color.red);
-        window.addShape(like1);
-        percentSize = 25;
-        Shape like2 = new Shape(padLeft, padTop + songTextHeight + textPad / 2,
-            percentSize, textPad / 2, Color.green);
-        window.addShape(like2);
-        percentSize = 55;
-        Shape like3 = new Shape(padLeft, padTop + songTextHeight + textPad,
-            percentSize, textPad / 2, Color.blue);
-        window.addShape(like3);
-        percentSize = 75;
-        Shape like4 = new Shape(padLeft, padTop + songTextHeight + textPad
-            + textPad / 2, percentSize, textPad / 2, Color.orange);
-        window.addShape(like4);
+            curLeft += padLeft;
+            percentSize = data[i][1][0];
+            Shape like1 = new Shape(curLeft, curTop + songTextHeight,
+                percentSize, textPad / 2, Color.red);
+            window.addShape(like1);
+            percentSize = data[i][1][1];
+            Shape like2 = new Shape(curLeft, curTop + songTextHeight + textPad
+                / 2, percentSize, textPad / 2, Color.green);
+            window.addShape(like2);
+            percentSize = data[i][1][2];
+            Shape like3 = new Shape(curLeft, curTop + songTextHeight + textPad,
+                percentSize, textPad / 2, Color.blue);
+            window.addShape(like3);
+            percentSize = data[i][1][3];
+            Shape like4 = new Shape(curLeft, curTop + songTextHeight + textPad
+                + textPad / 2, percentSize, textPad / 2, Color.orange);
+            window.addShape(like4);
 
-        padLeft /= 2;
-        Shape middle = new Shape(padLeft + songWidth / 2 - 2, padTop
-            + songTextHeight, 4, textPad * 2, Color.BLACK);
-        window.addShape(middle);
-        window.moveToFront(middle);
+            curLeft -= padLeft;
+            Shape middle = new Shape(curLeft + songWidth / 2 - 2, curTop
+                + songTextHeight, 4, textPad * 2, Color.BLACK);
+            window.addShape(middle);
+            window.moveToFront(middle);
+        }
+    }
+
+
+    /**
+     * returns the type of Enum for the integer notation indicated by
+     * curRepresent
+     * 
+     * @return TypeEnum for current representation
+     */
+    private TypeEnum getRType() {
+        switch (curRepresent) {
+            case 0:
+                return TypeEnum.HOBBY;
+            case 1:
+                return TypeEnum.MAJOR;
+            case 2:
+                return TypeEnum.REGION;
+            default:
+                return TypeEnum.OTHER;
+        }
+    }
+
+
+    /**
+     * gets the previous page
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void prevPage(Button b) {
+        backend.retrievePreviousPage();
+        render();
+    }
+
+
+    /**
+     * sorts by Artist
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void sortArtist(Button b) {
+        backend.sort(0);
+        render();
+    }
+
+
+    /**
+     * sorts by Title
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void sortSong(Button b) {
+        backend.sort(3);
+        render();
+    }
+
+
+    /**
+     * sorts by Year
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void sortYear(Button b) {
+        backend.sort(2);
+        render();
+    }
+
+
+    /**
+     * sorts by Genre
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void sortGenre(Button b) {
+        backend.sort(1);
+        render();
+    }
+
+
+    /**
+     * returns next page
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void nextPage(Button b) {
+        backend.retrieveNextPage();
+        render();
+    }
+
+
+    /**
+     * changes representation to by Hobby
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void repHobby(Button b) {
+        curRepresent = 0;
+        render();
+    }
+
+
+    /**
+     * changes representation to by Major
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void repMajor(Button b) {
+        curRepresent = 1;
+        render();
+    }
+
+
+    /**
+     * changes representation to by Region
+     * 
+     * @param b
+     *            the button clicked
+     */
+    public void repRegion(Button b) {
+        curRepresent = 2;
+        render();
+    }
+
+
+    public void exit(Button b) {
+        System.exit(0);
     }
 }
