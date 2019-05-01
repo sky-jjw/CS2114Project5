@@ -150,7 +150,7 @@ public class GUI {
         String[] names = backend.getNames();
         String[] nameParts = { "", "" };
         int percentSize = 0;
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < names.length; i++) {
             nameParts = names[i].split(", ");
             curLeft = padLeft + (padLeft + songWidth) * (i % 3);
             curTop = padTop + (songTextHeight + padTop + textPad * 2) * (i / 3);

@@ -123,8 +123,8 @@ public class Backend {
     public String[] getNames() {
         String[] names = new String[9];
         for (int i = 0; (i < 9 && displayedSongs[i] != null); i++) {
-            names[i] = displayedSongs[i].getTitle() + ", by " + displayedSongs[i]
-                .getArtist();
+            names[i] = displayedSongs[i].getTitle() + ", by "
+                + displayedSongs[i].getArtist();
         }
         return names;
     }
