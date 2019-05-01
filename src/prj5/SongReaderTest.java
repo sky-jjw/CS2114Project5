@@ -42,10 +42,10 @@ public class SongReaderTest extends TestCase {
      */
     @Hint("main working properly with MusicSurveyDataTest2, SongListTest2")
     public void testMain2() throws FileNotFoundException {
-
+        Song testS = new Song("t", "t", 1000, "t");
         Input.main(new String[] { "MusicSurveyDataTest2.csv",
             "SongListTest2.csv" });
-
+        assertNull(testS.retrieve(TypeEnum.OTHER));
     }
 
 }
