@@ -9,9 +9,7 @@
  */
 package prj5;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import student.TestCase;
 import student.testingsupport.annotations.Hint;
 
@@ -24,15 +22,12 @@ import student.testingsupport.annotations.Hint;
  * @version 11-12-2015
  */
 public class SongReaderTest extends TestCase {
-    private Scanner fileData;
-
 
     /**
      * sets up any needed variables for test methods
      */
     public void setUp() {
-
-        fileData = null;
+        // intentionally left blank
     }
 
 
@@ -51,27 +46,6 @@ public class SongReaderTest extends TestCase {
         Input.main(new String[] { "MusicSurveyDataTest2.csv",
             "SongListTest2.csv" });
 
-        String fileName = "Output2TitleGenreHobby.txt";
-
-        String output2TitleGenreHobby = "";
-        fileData = null;
-        try {
-            // Can throw FileNotFoundException
-            fileData = new Scanner(new File(fileName));
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("Scanner error opening the file " + fileName);
-            System.out.println(e.getMessage());
-
-        }
-
-        while (fileData.hasNextLine()) {
-            output2TitleGenreHobby += fileData.nextLine() + "\n";
-        }
-
-        assertFuzzyEquals("Output not as expected for input files "
-            + "MusicSurveyDataTest2.csv and SongListTest2.csv",
-            output2TitleGenreHobby, systemOut().getHistory());
     }
 
 }

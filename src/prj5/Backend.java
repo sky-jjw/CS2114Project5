@@ -54,8 +54,13 @@ public class Backend {
             int[][] currData = curr.retrieve(arrayType);
             for (int j = 0; j < 2; j++) {
                 for (int k = 0; k < 4; k++) {
-                    data[i][j][k] = (int)((currData[j * 2][k] * 100)
-                        / currData[j * 2 + 1][k]);
+                    if (currData[j * 2 + 1][k] == 0) {
+                        data[i][j][k] = 0;
+                    }
+                    else {
+                        data[i][j][k] = (int)((currData[j * 2][k] * 100)
+                            / currData[j * 2 + 1][k]);
+                    }
                 }
             }
         }
