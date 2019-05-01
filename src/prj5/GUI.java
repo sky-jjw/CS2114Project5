@@ -340,6 +340,12 @@ public class GUI {
     }
 
 
+    /**
+     * exits program
+     * 
+     * @param b
+     *            the button clicked
+     */
     public void exit(Button b) {
         System.exit(0);
     }
