@@ -21,7 +21,7 @@ public class Input {
             new GUI(args[1], args[0]);
         }
         else {
-            new GUI("SongList2018.csv", "MusicSurveyData2018.csv");
+            new GUI("SongList.csv", "MusicSurveyData.csv");
         }
     }
 }
